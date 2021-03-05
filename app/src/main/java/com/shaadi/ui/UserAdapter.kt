@@ -2,6 +2,7 @@ package com.shaadi.ui
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
@@ -38,14 +39,30 @@ class UserAdapter(private val onClickLisner: OnClickLisner, private val context:
     class MyNewsViewHolder(private val binding: UserItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: UserEntity?, onClickLisner: OnClickLisner, context: Context) {
-            binding.vm = item
+            binding.user = item
+            when (item?.accepted) {
+                0 -> {
+                    binding.btnAccept.visibility = View.VISIBLE
+                    binding.btnDecline.visibility = View.VISIBLE
+                }
+                1 -> {
+                    binding.btnAccept.visibility = View.GONE
+                    binding.btnDecline.visibility = View.VISIBLE
+                    binding.btnDecline.text = context.getString(R.string.member_declined)
+                }
+                2 -> {
+                    binding.btnDecline.visibility = View.GONE
+                    binding.btnAccept.visibility = View.VISIBLE
+                    binding.btnAccept.text = context.getString(R.string.member_accepted)
+                }
+            }
+
             binding.btnAccept.setOnClickListener {
                 onClickLisner.onClickOnAccept(item!!)
             }
             binding.btnDecline.setOnClickListener {
                 onClickLisner.onClickOnDecline(item!!)
             }
-
 
 
         }

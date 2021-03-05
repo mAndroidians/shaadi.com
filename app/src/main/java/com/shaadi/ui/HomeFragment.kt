@@ -61,16 +61,11 @@ class HomeFragment : DaggerFragment() {
     private fun setUpRecycleView() {
         newsAdapter = UserAdapter(object : UserAdapter.OnClickLisner {
             override fun onClickOnDecline(userEntity: UserEntity) {
-                lifecycleScope.launch{
                     viewModel.updateData(1, userEntity.id)
-                    setObservers()
-                }
+
             }
             override fun onClickOnAccept(userEntity: UserEntity) {
-                lifecycleScope.launch{
                     viewModel.updateData(2, userEntity.id)
-                    setObservers()
-                }
             }
 
         }, requireActivity())

@@ -71,14 +71,6 @@ fun Fragment.showSettingsSnack() {
     }
 }
 
-/*fun Fragment.parseMessageResponse(response: String?): String {
-    return try {
-        Gson().fromJson(response, MessageResponse::class.java).message
-    } catch (e: Exception) {
-        "Something went wrong"
-    }
-}*/
-
 fun androidx.appcompat.app.AppCompatActivity.showToast(message: String) {
     runOnUiThread {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()

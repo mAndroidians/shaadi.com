@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="vm"
+            name="user"
             type="com.shaadi.data.entity.UserEntity" />
     </data>
 
@@ -34,10 +34,11 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/appCompatImageView"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="180dp"
                     android:layout_gravity="center"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/ic_launcher"
+                    android:scaleType="fitCenter"
+                    app:imageUrl="@{user.picture}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +51,8 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:text="Manihs M 22 Years"
+                    android:text="@{user.name+` (`+user.gender+`) `+user.age+`Years`}"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
@@ -60,6 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -70,12 +73,10 @@
                         android:id="@+id/btn_decline"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp"
-                        android:text="@string/decline"
                         android:backgroundTint="@android:color/holo_red_dark"
+                        android:text="@string/decline"
                         android:textColor="@color/white"
                         app:layout_constraintEnd_toStartOf="@+id/btn_accept"
                         app:layout_constraintStart_toStartOf="parent"
@@ -87,10 +88,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:text="@string/accept"
                         android:backgroundTint="@android:color/holo_green_dark"
+                        android:text="@string/accept"
                         android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/btn_decline"
