@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shaadi.R
@@ -19,6 +20,8 @@ import com.shaadi.databinding.FragmentHomeBinding
 import com.shaadi.util.showProgressBar
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.launch
+import okhttp3.internal.userAgent
 import javax.inject.Inject
 
 class HomeFragment : DaggerFragment() {
@@ -57,10 +60,20 @@ class HomeFragment : DaggerFragment() {
 
     private fun setUpRecycleView() {
         newsAdapter = UserAdapter(object : UserAdapter.OnClickLisner {
-            override fun onClick(userEntity: UserEntity) {
-
+            override fun onClickOnDecline(userEntity: UserEntity) {
+                lifecycleScope.launch{
+                    viewModel.updateData(1, userEntity.id)
+                    setObservers()
+                }
             }
-        }, activity!!)
+            override fun onClickOnAccept(userEntity: UserEntity) {
+                lifecycleScope.launch{
+                    viewModel.updateData(2, userEntity.id)
+                    setObservers()
+                }
+            }
+
+        }, requireActivity())
         binding.recyclerViewNews.setHasFixedSize(true)
         //  layoutManager = LinearLayoutManager(activity)
         //  binding.recyclerViewNotification.layoutManager = layoutManager

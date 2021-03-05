@@ -39,8 +39,11 @@ class UserAdapter(private val onClickLisner: OnClickLisner, private val context:
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: UserEntity?, onClickLisner: OnClickLisner, context: Context) {
             binding.vm = item
-            binding.cardView.setOnClickListener {
-                onClickLisner.onClick(item!!)
+            binding.btnAccept.setOnClickListener {
+                onClickLisner.onClickOnAccept(item!!)
+            }
+            binding.btnDecline.setOnClickListener {
+                onClickLisner.onClickOnDecline(item!!)
             }
 
 
@@ -51,7 +54,9 @@ class UserAdapter(private val onClickLisner: OnClickLisner, private val context:
     }
 
     interface OnClickLisner {
-        fun onClick(newsEntity: UserEntity)
+        fun onClickOnDecline(newsEntity: UserEntity)
+        fun onClickOnAccept(newsEntity: UserEntity)
+
     }
 
 }

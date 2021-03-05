@@ -23,4 +23,10 @@ interface UserDao {
     @Query(value = "DELETE FROM user_entity")
     fun deleteAll()
 
+
+
+    @Query("UPDATE user_entity SET accepted=:accepted WHERE id = :id")
+    fun update(accepted: Int?, id: Int)
+
+
 }

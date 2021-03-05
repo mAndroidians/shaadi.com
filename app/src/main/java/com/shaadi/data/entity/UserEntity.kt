@@ -12,5 +12,7 @@ data class UserEntity(
     @field:SerializedName("id")
     val id:Int,
     @field:SerializedName("name")
-    val name:String
+    val name:String,
+    @field:SerializedName("accepted")
+    val accepted:Int = 0
 )
